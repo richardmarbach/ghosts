@@ -1,0 +1,148 @@
+:root {
+  --gallery-gap: 5%;
+  --close-button-size: 1.5rem;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background-color: black;
+  width: 100vw;
+  height: 100vh;
+}
+
+a, a:visited { color: white; }
+
+img {
+  max-width: 100%;
+  max-height: 100%;
+}
+
+#prev, #next {
+  position: fixed;
+  top: 50%;
+  transform: translateY(-50%);
+  color: white;
+  cursor: pointer;
+}
+
+#prev {
+  left: 2%;
+}
+
+#next {
+  right: 2%;
+}
+
+.chevron {
+  display: inline-block;
+  border-width: 4px;
+  border-color: current;
+  width: 1em;
+  height: 1em;
+}
+
+.chevron.left {
+  border-right-style: solid;
+  border-bottom-style: solid;
+  transform: rotate(135deg);
+}
+
+.chevron.right {
+  border-right-style: solid;
+  border-bottom-style: solid;
+  transform: rotate(-45deg);
+}
+
+#homepage {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#homepage .enter-button {
+  position: fixed;
+  bottom: 2%;
+  right: 2%;
+}
+
+#gallery {
+  height: 100%;
+  width: 100%;
+  display: grid;
+  padding: var(--gallery-gap);
+  gap: var(--gallery-gap);
+  grid-template-rows: repeat(2, 1fr);
+  grid-template-columns: repeat(3, 1fr);
+  justify-content: center;
+  align-items: center;
+}
+
+@media (max-width: 720px) {
+  #gallery {
+    grid-template-columns: repeat(1, 1fr);
+  }
+}
+
+@media (min-width: 720px) and (max-width: 1280px) {
+  #gallery {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.close {
+  position: fixed;
+  flex-shrink: 0;
+  display: inline-block;
+  top: 20px;
+  left: 20px;
+  width: var(--close-button-size);
+  height: var(--close-button-size);
+  cursor: pointer;
+}
+
+.close:before,
+.close:after {
+  left: calc(var(--close-button-size)/2);
+  position: absolute;
+  content: '';
+  width: 2px;
+  height: var(--close-button-size);
+  background-color: white;
+  cursor: pointer;
+}
+
+.close:before {
+  transform: rotate(45deg);
+}
+
+.close:after{
+  transform: rotate(-45deg);
+}
+
+.slideshow {
+  position: relative;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  overflow-x: scroll;
+  overflow-y: hidden;
+  scroll-snap-type: x mandatory;
+}
+
+.slideshow .slide {
+  scroll-snap-align: center;
+  scroll-snap-stop: always;
+  padding: 0 4%;
+  width: 100%;
+  height: 100%;
+  flex: 0 0 100%;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
